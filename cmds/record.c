@@ -1559,6 +1559,7 @@ static void find_in_path(char *exename, char *buf, size_t len)
 	char *path;
 	bool found = false;
 	int i;
+	char exepath[PATH_MAX];
 
 	if (!env || exename[0] == '/')
 		pr_err_ns(UFTRACE_MSG, exename);
@@ -1568,7 +1569,8 @@ static void find_in_path(char *exename, char *buf, size_t len)
 
 	strv_for_each(&strv, path, i) {
 		snprintf(buf, len, "%s/%s", path, exename);
-		if (is_regular_executable(buf)) {
+		if (is_regular_executable(buf) ||
+		    check_script_file(buf, exepath, sizeof(exepath))) {
 			found = true;
 			break;
 		}
@@ -1586,6 +1588,7 @@ static void check_binary(struct uftrace_opts *opts)
 	int chk;
 	size_t i;
 	char elf_ident[EI_NIDENT];
+	char exepath[PATH_MAX];
 	static char altname[PATH_MAX]; // for opts->exename to be persistent
 	uint16_t e_type;
 	uint16_t e_machine;
@@ -1593,7 +1596,8 @@ static void check_binary(struct uftrace_opts *opts)
 
 again:
 	/* if it cannot be found in PATH, then fails inside */
-	if (!is_regular_executable(opts->exename)) {
+	if (!check_script_file(opts->exename, exepath, sizeof(exepath)) &&
+	    !is_regular_executable(opts->exename)) {
 		find_in_path(opts->exename, altname, sizeof(altname));
 		opts->exename = altname;
 	}
