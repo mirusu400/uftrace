@@ -133,243 +133,246 @@ uftrace-<*subcommand*> 메뉴얼 페이지에서 추가적인 정보를 확인�
 :   함수 인자를 표시한다.
 
 -b, \--buffer=*SIZE*
-:   저장할 데이터의 내부 버퍼 크기를 설정한다.  기본 사이즈는 128k 이다.
+:   저장할 데이터의 내부 버퍼 크기를 설정한다. (기본값: 128k)
 
 \--chrome
 :   구글 크롬 추적 기능에서 사용되는 JSON 형식의 결과물을 표시한다.
 
 \--clock
-:   타임스탬프를 읽는 클럭 소스를 설정한다.  기본 설정은 'mono' 이다.
+:   타임스탬프를 읽는 클럭 소스를 설정한다. (기본값: mono)
 
 \--column-offset=*DEPTH*
-:   각 열의 간격(offset) 크기를 명시한다.  기본 간격은 8 이다.
+:   각 열의 간격(offset) 크기를 명시한다. (기본값: 8)
 
 \--column-view
 :   열(column) 별로 분리하여 각각의 태스크를 출력한다.
 
 -C, \--caller-filter=*FUNC*
-:   Only trace callers of those FUNCs
+:   FUNC의 호출자를 출력하는 필터를 설정한다.
 
 \--demangle=*TYPE*
-:   C++ symbol demangling: full, simple, no
-:   (default: simple)
+:   C++ 심볼 디맹글링: full, simple, no
+:   (기본값: simple)
 
 \--diff=*DATA*
-:   Report differences
+:   차이점을 보고한다.
 
 \--diff-policy=*POLICY*
-:   Control diff report policy
-:   (default: 'abs,compact,no-percent')
+:   diff 보고 정책을 설정한다.
+:   (기본값: 'abs,compact,no-percent')
 
 \--disable
-:   Start with tracing disabled
+:   데이터를 기록하지 않고 시작한다.
 
 -D, \--depth=*DEPTH*
-:   Trace functions within *DEPTH*
+:   *DEPTH* 깊이만큼 함수를 추적한다.
 
 -e, \--estimate-return
-:   Use only entry record type for safety
+:   안정성을 위해 각 함수의 진입 데이터만을 기록한다.
 
 \--event-full
-:   Show all events outside of function
+:   사용자 함수 밖의 모든 이벤트를 출력한다.
 
 -E, \--Event=*EVENT*
-:   Enable *EVENT* to save more information
+:   더 많은 정보를 저장하기 위해 *EVENT* 를 활성화한다.
 
 \--flame-graph
-:   Dump recorded data in FlameGraph format
+:   기록된 데이터를 FlameGraph 형식으로 표시한다.
 
 \--flat
-:   Use flat output format
+:   평평한(flat) 형식으로 출력한다.
 
 \--force
-:   Trace even if executable is not instrumented
+:   계측 정보가 없는 실행 파일이여도 추적한다.
 
 \--format=*FORMAT*
-:   Use *FORMAT* for output: normal, html (default: normal)
+:   *FORMAT* 으로 형식화된 출력을 보여준다: normal, html (기본값: normal)
 
 -f, \--output-fields=*FIELD*
-:   Show FIELDs in the replay or graph output
+:   replay 혹은 graph 출력에서 FIELD를 보여준다.
 
 -F, \--filter=*FUNC*
-:   Only trace those FUNCs
+:   FUNC 만 추적한다.
 
 -g, \--agent
-:   Start an agent in mcount to listen to commands
+:   명령어를 받기 위해 mcount에서 에이전트를 시작한다.
 
 \--graphviz
-:   Dump recorded data in *DOT* format
+:   기록된 데이터를 *DOT* 형식으로 덤프한다.
 
 -H, \--hide=*FUNC*
-:   Hide FUNCs from trace
+:   추적에서 FUNC 를 숨긴다.
 
 \--host=*HOST*
-:   Send trace data to *HOST* instead of write to file
+:   추적 데이터를 파일에 쓰는 대신 *HOST* 에 전달한다.
 
 -k, \--kernel
-:   Trace kernel functions also (if supported)
+:   지원하는 경우, 커널 함수 또한 추적한다.
 
 \--keep-pid
-:   Keep same pid during execution of traced program
+:   프로그램을 추적할 때 동일한 pid 값을 유지하게 해준다.
 
 \--kernel-buffer=*SIZE*
-:   Size of kernel tracing buffer (default: 1408K)
+:   저장할 커널 데이터의 내부 버퍼 크기를 설정한다.  (기본값: 1408K)
 
 \--kernel-full
-:   Show kernel functions outside of user
+:   사용자 함수 밖에서 호출된 모든 커널 함수를 출력한다.
 
 \--kernel-only
-:   Dump kernel data only
+:   사용자 함수를 제외한 커널 함수만 출력한다.
 
 \--kernel-skip-out
-:   Skip kernel functions outside of user (deprecated)
+:   사용자 함수 밖의 커널 함수를 생략한다. (지원 종료)
 
 -K, \--kernel-depth=*DEPTH*
-:   Trace kernel functions within *DEPTH*
+:   커널 최대 함수 깊이를 *DEPTH* 로 지정한다.
 
 \--libmcount-single
-:   Use single thread version of libmcount
+:   libmcount 의 단일 쓰레드 버전을 사용한다.
 
 \--list-event
-:   List available events
+:   실행중에 사용가능한 이벤트들을 출력한다.
 
 \--logfile=*FILE*
-:   Save warning and debug messages into this file instead of stderr.
+:   경고와 디버그 메시지를 stderr 을 대신해 *FILE* 안에 저장한다.
 
 -l, \--nest-libcall
-:   Show nested library calls
+:   중첩된 라이브러리 호출을 보여준다.
 
 \--libname
-:   Show libname name with symbol name
+:   함수 이름과 함께 라이브러리 이름을 출력한다
 
 \--libmcount-path=*PATH*
+:   libmcount 라이브러리를 *PATH* 에서 먼저 찾는다.
 :   Load libmcount libraries from this *PATH*
 
 \--match=*TYPE*
-:   Support pattern match: regex, glob (default:
+:   일치하는 패턴을 보여준다: regex, glob (기본값:
 :   regex)
 
 \--max-stack=*DEPTH*
-:   Set max stack depth to *DEPTH* (default: 65535)
+:   스택의 최대 깊이를 *DEPTH* 로 설정한다. (기본값: 65535)
 
 \--no-args
-:   Do not show arguments and return value
+:   함수 인자와 반환 값을 보여주지 않는다.
 
 \--no-comment
-:   Don't show comments of returned functions
+:   함수가 반환되는 곳에 주석을 출력하지 않는다.
 
 \--no-event
-:   Disable (default) events
+:   기본 이벤트들을 비활성화한다.
 
 \--no-sched
-:   Disable schedule events
+:   스케줄 이벤트를 비활성화한다.
 
 \--no-sched-preempt
-:   Hide pre-emptive schedule event
-:   but show regular(sleeping) schedule event
+:   선점 스케줄 이벤트는 표시하지 않게 하나
+:   일반(대기) 스케쥴 이벤트는 그대로 표시한다.
 
 \--no-libcall
-:   Don't trace library function calls
+:   라이브러리 호출을 추적하지 않는다.
 
 \--no-merge
-:   Don't merge leaf functions
+:   잎(leaf) 함수를 병합하지 않는다.
 
 \--no-pltbind
-:   Do not bind dynamic symbols (*LD_BIND_NOT*)
+:   동적 심볼 주소를 바인딩하지 않는다. (*LD_BIND_NOT*)
 
 \--no-randomize-addr
-:   Disable *ASLR* (Address Space Layout Randomization)
+:   ASLR(Address Space Layout Randomization)을 비활성화 한다.
 
 \--nop
-:   No operation (for performance test)
+:   아무 작업도 하지 않는다. (성능 테스트 용)
 
 \--num-thread=*NUM*
-:   Create *NUM* recorder threads
+:   데이터를 저장하기 위해 *NUM* 개의 쓰레드를 사용한다.
 
 -N, \--notrace=*FUNC*
-:   Don't trace those FUNCs
+:   FUNC들을 추적하지 않는다.
 
 -p, \--pid=*PID*
-:   Connect to the *PID* of an interactive mcount instance
+:   대화형 mcount 인스턴스의 *PID* 에 연결한다.
 
 \--port=*PORT*
-:   Use *PORT* for network connection (default: 8090)
+:   네트워크 연결을 위해 *PORT* 를 사용한다. (기본값: 8090)
 
 -P, \--patch=*FUNC*
-:   Apply dynamic patching for FUNCs
+:   FUNC에 동적 패칭을 적용한다.
 
 \--record
-:   Record a new trace before running given script
+:   주어진 스크립트를 실행하기 전에 새롭게 추적을 기록한다.
 
 \--report
-:   Show a live report before replay
+:   replay 전 실시간 보고서를 보여준다.
 
 \--rt-prio=*PRIO*
-:   Record with real-time (*FIFO*) priority
+:   실시간 (*FIFO*) 우선순위로 기록한다.
 
--r, \--time-range=*TIME*~*TIME* Show output within the *TIME*(timestamp or elapsed time)
-:   range only
+-r, \--time-range=*TIME*~*TIME*
+:   *TIME* 시간 안에서만 기록된 추적 결과를 보여준다.
+:   (타임스탬프 혹은 경과시간)
 
 \--run-cmd=*CMDLINE*
-:   Command line that want to execute after tracing
-:   data received
+:   데이터를 수신한 다음에 주어진 (쉘)명령어를 바로
+:   실행한다.
 
 -R, \--retval=*FUNC*[@retspec]
-:   Show function return values for *FUNC*, optionally with given uftrace retspec
+:   함수 *FUNC*에 대한 반환값을 주어진
+:   uftrace retspec 에 맞게 보여준다.
 
 \--sample-time=*TIME*
-:   Show flame graph with this sampling time
+:   설정한 샘플링 타임에 해당하는 Flame graph 를 보여준다.
 
 \--signal=*SIGNAL*@act[,act,...]
-:   Trigger the given actions when the given *SIGNAL* is received
+:   주어진 *SIGNAL* 을 받았을 때 주어진 액션을 실행한다.
 
 \--sort-column=*INDEX*
-:   Sort diff report on column *INDEX* (default: 2)
+:   *INDEX* 열을 기준으로 diff 보고서를 정렬한다. (기본값: 2)
 
 \--srcline
-:   Enable recording source line info
+:   가능한 각 함수들의 소스 줄번호를 표시한다.
 
 \--symbols
-:   Print symbol table instead of the recorded tracing info
+:   기록된 정보 대신에 심볼(symbol) 테이블을 출력한다.
 
 -s, \--sort=*KEY*[,*KEY*,...]
-:   Sort reported functions by KEYs (default: 2)
+:   주어진 키를 기반으로 함수들을 정렬한다. (기본값: 2)
 
 -S, \--script=*SCRIPT*
-:   Run a given *SCRIPT* in function entry and exit
+:   함수의 시작과 끝에 주어진 *SCRIPT* 를 수행한다.
 
 -t, \--time-filter=*TIME*
-:   Hide small functions run less than the *TIME*
+:   설정한 시간 이하로 수행된 함수는 표시하지 않게 한다.
 
 \--task
-:   [info]: Print task relationship in a tree form instead of the tracing info.
+:   일반적인 함수 그래프 대신 태스크 그래프를 출력한다.
 
 \--task-newline
-:   Interleave a newline when task is changed
+:   태스크가 변경되면 빈 공백 한줄을 추가한다.
 
 \--tid=*TID*[,*TID*,...]
-:   Only replay those tasks
+:   주어진 태스크에 의해 호출된 함수들만 출력한다.
 
 \--time
-:   Print time information
+:   시간 정보를 출력한다.
 
 -T, \--trigger=*FUNC*@act[,act,...]
-:   Trigger action on those FUNCs
+:   FUNC 의 트리거를 설정한다.
 
 -U, \--unpatch=*FUNC*
-:   Don't apply dynamic patching for FUNCs
+:   주어진 FUNC 함수에 대해 동적 패치를 적용하지 않는다.
 
 \--with-syms=*DIR*
-:   Use symbol files in the *DIR*
+:   *DIR* 디렉터리 안에 있는 심볼 파일들을 사용한다.
 
 -W, \--watch=*POINT*
-:   Watch and report *POINT* if it's changed
+:   *POINT* 가 변경되는 경우를 감시하고 기록한다.
 
 -Z, \--size-filter=*SIZE*
-:   Apply dynamic patching for functions bigger than *SIZE*
+:   *SIZE* 보다 큰 함수들에 동적 패칭을 적용한다.
 
-For more detail about these command-specific options,
-please see the more specific manual pages listed below.
+더 구체적인 보조 명령별 옵션을 확인하기 위해선,
+아래에 나열된 메뉴얼 페이지를 참조하라.
 
 
 함께 보기
